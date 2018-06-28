@@ -1,2 +1,3 @@
 # whiterabbitai
-A simple database replication system
+
+A windows based database replication system for whiterabbitai
