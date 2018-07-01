@@ -9,7 +9,7 @@ namespace BlackBoxService {
       var uniqueIdList = new List<string>();
 
       // Create the table first.
-      db_utils.CreateTable();
+      // db_utils.CreateTable();
 
       // Create entries in table.
       for (int i = 0; i < 10; i++) {

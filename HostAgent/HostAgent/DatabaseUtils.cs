@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Collections.Generic;
 
-namespace BlackBoxService {
+namespace HostAgent {
   public class DatabaseUtils {
     const string TableName = "Table1";
     const string UniqueId = "UniqueId";
@@ -31,7 +31,7 @@ namespace BlackBoxService {
         return RunNonQuery(query);
       }
       catch (Exception ex) {
-        Log.WriteLog("AddAppointment: Exception while adding schema {0}, {1}", schema.ToString(), ex);
+        Log.WriteLog("AddAppointment: Exception while adding schema {0}, {1}", schema.ToString(), ex.ToString());
         return false;
       }
     }
