@@ -9,6 +9,8 @@ namespace CloudService {
     static WcfServer _server;
 
     static void OnStart() {
+      // Create/Reset table.
+      DatabaseUtils.GetInstance().CreateTable();
       _server = new WcfServer();
       _server.Start();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Contract;
 
 namespace CloudService {
   public class RefreshData : IRefreshData {
@@ -18,6 +19,7 @@ namespace CloudService {
           if (!db_utils.CancelAppointment(update.customer.UniqueId)) {
             Log.WriteLog("ApplyUpdates: Error while deleting schema");
           }
+          Log.WriteLog("Added new update to database");
         }
       }
     }
@@ -28,11 +30,13 @@ namespace CloudService {
       // Clean up the database.
       db_utils.CreateTable();
 
+      Log.WriteLog("RefreshDatabase customers count: {0}", customers.Count());
       // Add all entries from scratch.
       foreach (var customer in customers) {
         if (!db_utils.AddOrUpdateAppointment(new Schema(customer))) {
           Log.WriteLog("RefreshDatabase: Error while refreshing database");
         }
+        Log.WriteLog("Added new customer to database");
       }
     }
   }

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Runtime.Serialization;
+using CloudService;
 
-namespace CloudService {
-  [DataContract]
+namespace Contract {
+  [DataContract(Name = "Operation")]
   public enum Operation {
     [EnumMember]
     AddOrUpdate,
@@ -13,42 +14,53 @@ namespace CloudService {
     Delete
   }
 
-  [DataContract]
+  [DataContract(Name = "Customer")]
   public class Customer {
-    [DataMember]
+    [DataMember(Name = "UniqueId")]
     public string UniqueId;
 
-    [DataMember]
+    [DataMember(Name = "Slot")]
     public string Slot;
 
-    [DataMember]
+    [DataMember(Name = "Name")]
     public string Name;
 
-    [DataMember]
+    [DataMember(Name = "Age")]
     public string Age;
 
-    [DataMember]
+    [DataMember(Name = "PhoneNumber")]
     public string PhoneNumber;
 
-    [DataMember]
+    [DataMember(Name = "Email")]
     public string Email;
+
+    public Customer() { } // Default constructor
+
+    public Customer(Schema schema) {
+      this.UniqueId = schema.UniqueId;
+      this.Slot = schema.Slot;
+      this.Name = schema.Name;
+      this.Age = schema.Age;
+      this.PhoneNumber = schema.PhoneNumber;
+      this.Email = schema.Email;
+    }
   }
 
-  [DataContract]
+  [DataContract(Name = "Update")]
   public class Update {
-    [DataMember]
+    [DataMember(Name = "Operation")]
     public Operation operation;
 
-    [DataMember]
+    [DataMember(Name = "Customer")]
     public Customer customer;
   }
 
-  [ServiceContract]
+  [ServiceContract(Name = "IRefreshData")]
   public interface IRefreshData {
-    [OperationContract]
+    [OperationContract(Name = "ApplyUpdates")]
     void ApplyUpdates(List<Update> updates);
 
-    [OperationContract]
+    [OperationContract(Name = "RefreshDatabase")]
     void RefreshDatabase(List<Customer> customers);
   }
 }

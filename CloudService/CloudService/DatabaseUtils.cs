@@ -11,7 +11,7 @@ namespace CloudService {
     const string Age = "Age";
     const string PhoneNumber = "PhoneNumber";
     const string Email = "Email";
-    const string connectionString = "Data Source=.\\SQLEXPRESS;database=TestData;trusted_connection=true;";
+    const string connectionString = "Data Source=.\\SQLEXPRESS;database=master;trusted_connection=true;";
 
     static DatabaseUtils _instance;
 

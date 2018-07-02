@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using Contract;
 
 namespace HostAgent {
   public class WcfClient {
@@ -7,7 +8,7 @@ namespace HostAgent {
 
     public WcfClient(string endpointUrl) {
       _endpointUrl = endpointUrl;
-      _channelFactory = new ChannelFactory<IRefreshData>(new NetTcpBinding(), _endpointUrl);
+      _channelFactory = new ChannelFactory<IRefreshData>(new BasicHttpBinding(), _endpointUrl);
     }
 
     public IRefreshData CreateChannel() {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Contract;
 
 namespace CloudService {
   /// <summary>

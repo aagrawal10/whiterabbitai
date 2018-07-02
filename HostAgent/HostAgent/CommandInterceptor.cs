@@ -5,6 +5,8 @@ using TableDependency.EventArgs;
 using TableDependency.Enums;
 
 namespace HostAgent {
+  // TODO: This can be improved if SQL can be queried for updates since a specific time.
+  // However, looks like this resets when the SQL service restarts. Needs more investigation.
   public class CommandInterceptor {
     const string connectionString = "Data Source=.\\SQLEXPRESS;database=TestData;trusted_connection=true;";
     const string TableName = "Table1";
