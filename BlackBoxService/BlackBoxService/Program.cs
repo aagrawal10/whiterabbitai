@@ -42,11 +42,16 @@ namespace BlackBoxService {
     }
 
     static void DeleteAppointment() {
+      var staleIds = new List<string>();
       foreach (var uniqueId in uniqueIdList) {
         var rand = new Random();
         if (rand.Next(0, 10) > 7) continue;
         db_utils.CancelAppointment(uniqueId);
-        uniqueIdList.Remove(uniqueId);
+        staleIds.Add(uniqueId);
+      }
+
+      foreach(var staleId in staleIds) {
+        uniqueIdList.Remove(staleId);
       }
     }
 
